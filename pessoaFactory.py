@@ -7,19 +7,22 @@ from pessoa import TipoPessoa
 class PessoaFactory:
     
     @staticmethod
-    def create(tipo: TipoPessoa, renda_anual) -> Pessoa:
+    def create(tipo: TipoPessoa, nome,idade,renda_anual) -> Pessoa:
         if tipo == TipoPessoa.PESSOA_FISICA:
-            return PessoaFisica('Maria',30,'123.456.789-10',renda_anual)
+            return PessoaFisica(nome,idade,renda_anual)
         
         if tipo == TipoPessoa.PESSOA_JURIDICA:
-            return PessoaJuridica('Nubank',9,'123.456.0001/78',renda_anual)
+            return PessoaJuridica(nome,idade,renda_anual)
         
         return None
 
     
 if __name__ == '__main__':
-    pf = PessoaFactory.create(TipoPessoa.PESSOA_FISICA,36000)
-    pj = PessoaFactory.create(TipoPessoa.PESSOA_JURIDICA,100000)
+    pf = PessoaFactory.create(TipoPessoa.PESSOA_FISICA,'Maria',30,36000)
+    pj = PessoaFactory.create(TipoPessoa.PESSOA_JURIDICA,'Nubank',9,100000)
 
-    print(f'Valor a pagar de IR - Pessoa Física: R${pf.calcularIR():.2f}')
-    print(f'Valor a pagar de IR - Pessoa Jurídica: R${pj.calcularIR():.2f}')
+    print(f'Valor a pagar de IR - Pessoa Física [{pf.nome}]: R${pf.calcularIR():.2f}')
+    print(f'Valor a pagar de IR - Pessoa Jurídica [{pj.nome}]: R${pj.calcularIR():.2f}')
+
+
+   
